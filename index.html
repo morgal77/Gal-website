@@ -281,15 +281,13 @@
   --dark: #0C0C0A;
   --dark-mid: #131310;
   --dark-card: #181815;
-  --dark-section: #0F0F0D;
-  --light-bg: #F7F5F0;
+  --light-bg: #F5F3EE;
   --light-card: #FFFFFF;
   --light-text: #1A1A17;
   --light-muted: #6B6860;
   --text: #EDE9E0;
   --text-muted: #7A7670;
   --border: rgba(184,154,90,0.18);
-  --border-light: rgba(184,154,90,0.12);
   --font-display: 'Cormorant Garamond', Georgia, serif;
   --font-body: 'DM Sans', sans-serif;
 }
@@ -300,100 +298,101 @@ body { font-family: var(--font-body); font-size: 16px; line-height: 1.7; font-we
 /* ── NAV ── */
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-  background: rgba(12,12,10,0.95);
-  backdrop-filter: blur(16px);
+  background: rgba(12,12,10,0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border-bottom: 0.5px solid var(--border);
-  padding: 0 4rem;
+  padding: 0 3rem;
   display: flex; align-items: center; justify-content: space-between;
-  height: 70px;
+  height: 68px;
 }
 .nav-logo { text-decoration: none; display: flex; align-items: center; }
-.nav-logo svg { height: 40px; width: auto; }
-.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-logo svg { height: 38px; width: auto; }
+.nav-links { display: flex; gap: 2rem; list-style: none; }
 .nav-links a {
   color: var(--text-muted); text-decoration: none;
-  font-size: 0.82rem; letter-spacing: 0.07em; text-transform: uppercase;
+  font-size: 0.8rem; letter-spacing: 0.07em; text-transform: uppercase;
   transition: color 0.2s; font-weight: 400;
 }
 .nav-links a:hover { color: var(--gold); }
 .nav-cta {
   background: var(--gold); color: var(--dark);
-  padding: 0.55rem 1.6rem;
-  font-family: var(--font-body); font-size: 0.82rem;
+  padding: 0.55rem 1.4rem;
+  font-family: var(--font-body); font-size: 0.8rem;
   font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase;
   text-decoration: none; transition: background 0.2s;
   display: inline-flex; align-items: center; gap: 0.4rem;
+  white-space: nowrap;
 }
 .nav-cta:hover { background: var(--gold-light); }
+.nav-hamburger {
+  display: none; flex-direction: column; gap: 5px; cursor: pointer;
+  padding: 4px; background: none; border: none;
+}
+.nav-hamburger span { width: 22px; height: 1.5px; background: var(--text-muted); display: block; transition: 0.3s; }
+.mobile-menu {
+  display: none; position: fixed; top: 68px; left: 0; right: 0;
+  background: rgba(12,12,10,0.98); backdrop-filter: blur(20px);
+  border-bottom: 0.5px solid var(--border);
+  flex-direction: column; padding: 1.5rem 2rem; gap: 1.2rem; z-index: 199;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a {
+  color: var(--text-muted); text-decoration: none;
+  font-size: 0.9rem; letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 0.5rem 0; border-bottom: 0.5px solid var(--border);
+}
+.mobile-menu a:last-child { border-bottom: none; }
+.mobile-menu a:hover { color: var(--gold); }
 
 /* ── SECTION LABEL ── */
 .section-label-wrap {
-  display: flex; align-items: center; gap: 1rem;
-  margin-bottom: 1.2rem;
+  display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;
 }
 .section-label-wrap::before,
-.section-label-wrap::after {
-  content: ''; flex: 0 0 40px; height: 1px; background: var(--gold);
-}
-.section-label {
-  font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
-  color: var(--gold); font-weight: 500;
-}
-/* light version */
-.label-dark .section-label { color: var(--gold); }
-.label-dark .section-label-wrap::before,
-.label-dark .section-label-wrap::after { background: var(--gold); }
+.section-label-wrap::after { content: ''; flex: 0 0 36px; height: 1px; background: var(--gold); }
+.section-label { font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); font-weight: 500; }
 
 /* ── HERO ── */
 .hero {
-  min-height: 92vh;
+  min-height: 100svh;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
-  text-align: center; padding: 7rem 2rem 4rem;
+  text-align: center; padding: 7rem 1.5rem 5rem;
   position: relative; overflow: hidden;
-  background: var(--dark);
 }
-.hero::before {
-  content: '';
-  position: absolute; inset: 0;
-  background:
-    radial-gradient(ellipse 70% 50% at 50% 30%, rgba(184,154,90,0.08) 0%, transparent 65%),
-    radial-gradient(ellipse 40% 40% at 20% 80%, rgba(184,154,90,0.04) 0%, transparent 60%);
-  pointer-events: none;
+.hero-bg {
+  position: absolute; inset: 0; z-index: 0;
+  background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1800&q=80&auto=format&fit=crop');
+  background-size: cover; background-position: center;
+  filter: brightness(0.22) saturate(0.6);
 }
-/* subtle grid texture */
-.hero::after {
-  content: '';
-  position: absolute; inset: 0;
-  background-image: linear-gradient(rgba(184,154,90,0.03) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(184,154,90,0.03) 1px, transparent 1px);
-  background-size: 60px 60px;
-  pointer-events: none;
+.hero-bg::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(12,12,10,0.3) 0%, rgba(12,12,10,0.6) 60%, rgba(12,12,10,0.95) 100%);
 }
-.hero-inner { position: relative; z-index: 1; max-width: 900px; }
+.hero-inner { position: relative; z-index: 1; max-width: 860px; }
 .hero-eyebrow {
   display: inline-flex; align-items: center; gap: 0.8rem;
-  font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
-  color: var(--gold); font-weight: 400; margin-bottom: 2rem;
+  font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--gold); font-weight: 400; margin-bottom: 1.8rem;
 }
-.hero-eyebrow::before, .hero-eyebrow::after {
-  content: ''; width: 32px; height: 0.5px; background: var(--gold);
-}
+.hero-eyebrow::before, .hero-eyebrow::after { content: ''; width: 28px; height: 0.5px; background: var(--gold); }
 .hero h1 {
   font-family: var(--font-display);
-  font-size: clamp(3.5rem, 8vw, 6.5rem);
-  font-weight: 600; line-height: 1.04; letter-spacing: -0.01em;
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  font-weight: 600; line-height: 1.04;
   color: var(--text); margin-bottom: 0.2rem;
 }
 .hero h1 em { font-style: italic; color: var(--gold); }
 .hero-sub {
-  font-size: clamp(1rem, 1.8vw, 1.18rem);
-  color: var(--text-muted); max-width: 600px; margin: 2rem auto 3rem;
+  font-size: clamp(0.95rem, 2vw, 1.15rem);
+  color: var(--text-muted); max-width: 580px; margin: 1.8rem auto 2.8rem;
   font-weight: 300; line-height: 1.85;
 }
 .hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
 .btn-gold {
   background: var(--gold); color: var(--dark);
-  padding: 0.9rem 2.4rem; font-family: var(--font-body);
+  padding: 0.85rem 2.2rem; font-family: var(--font-body);
   font-size: 0.85rem; font-weight: 500; letter-spacing: 0.07em; text-transform: uppercase;
   border: none; cursor: pointer; text-decoration: none;
   transition: background 0.2s; display: inline-block;
@@ -401,81 +400,82 @@ nav {
 .btn-gold:hover { background: var(--gold-light); }
 .btn-ghost {
   background: transparent; color: var(--text);
-  border: 0.5px solid rgba(237,233,224,0.25);
-  padding: 0.9rem 2.4rem; font-family: var(--font-body);
+  border: 0.5px solid rgba(237,233,224,0.3);
+  padding: 0.85rem 2.2rem; font-family: var(--font-body);
   font-size: 0.85rem; font-weight: 300; letter-spacing: 0.07em; text-transform: uppercase;
   cursor: pointer; text-decoration: none; display: inline-block;
   transition: border-color 0.2s, color 0.2s;
 }
 .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
 .hero-scroll {
-  position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
-  display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
-  font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase;
+  position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
+  font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
   color: var(--text-muted); z-index: 1;
   animation: bounce 2s ease-in-out infinite;
 }
-.hero-scroll::after {
-  content: ''; width: 0.5px; height: 40px; background: var(--gold); opacity: 0.5;
-}
-@keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(6px)} }
+.hero-scroll::after { content: ''; width: 0.5px; height: 36px; background: var(--gold); opacity: 0.5; }
+@keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(5px)} }
 
-/* ── SHARED SECTION ── */
-.section-dark { background: var(--dark); padding: 7rem 4rem; }
-.section-mid { background: var(--dark-mid); padding: 7rem 4rem; }
-.section-light { background: var(--light-bg); padding: 7rem 4rem; }
+/* ── SHARED SECTIONS ── */
+.section-dark { background: var(--dark); padding: 6rem 3rem; }
+.section-mid { background: var(--dark-mid); padding: 6rem 3rem; }
+.section-light { background: var(--light-bg); padding: 6rem 3rem; }
 .section-inner { max-width: 1200px; margin: 0 auto; }
 
 /* ── SERVICES ── */
-.services-header { margin-bottom: 3.5rem; }
+.services-header { margin-bottom: 3rem; }
 .services-header h2 {
   font-family: var(--font-display);
-  font-size: clamp(2.2rem, 4.5vw, 3.5rem);
+  font-size: clamp(2rem, 4.5vw, 3.4rem);
   font-weight: 600; line-height: 1.1; color: var(--text);
 }
 .services-header h2 em { font-style: italic; color: var(--gold); }
 
-.services-scroll {
+.services-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 1px; background: var(--border);
-  border: 0.5px solid var(--border);
+  gap: 12px;
 }
 .svc-card {
   background: var(--dark-card);
+  border-radius: 2px;
+  overflow: hidden;
   display: flex; flex-direction: column;
-  transition: background 0.25s;
+  transition: transform 0.3s, box-shadow 0.3s;
   cursor: default;
 }
-.svc-card:hover { background: #1E1E1A; }
-.svc-img {
-  width: 100%; aspect-ratio: 4/3;
-  background: var(--dark-mid);
-  position: relative; overflow: hidden;
-  display: flex; align-items: center; justify-content: center;
+.svc-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.5), 0 0 0 0.5px var(--gold);
 }
-.svc-img svg { width: 28px; height: 28px; opacity: 0.5; }
-.svc-num { display: none; }
-/* gradient overlays per card */
-.svc-img-1 { background: linear-gradient(160deg, #1a1a14 0%, #0c0c08 100%); }
-.svc-img-2 { background: linear-gradient(160deg, #141418 0%, #0c0c10 100%); }
-.svc-img-3 { background: linear-gradient(160deg, #14181a 0%, #0c1010 100%); }
-.svc-img-4 { background: linear-gradient(160deg, #181a14 0%, #101408 100%); }
-.svc-img-5 { background: linear-gradient(160deg, #1a1418 0%, #100c10 100%); }
-.svc-body { padding: 1.6rem 1.4rem 2rem; flex: 1; }
+.svc-img {
+  width: 100%; height: 180px;
+  position: relative; overflow: hidden;
+}
+.svc-img img {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: brightness(0.65) saturate(0.7);
+  transition: filter 0.4s, transform 0.4s;
+}
+.svc-card:hover .svc-img img { filter: brightness(0.8) saturate(0.85); transform: scale(1.04); }
+.svc-img-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(12,12,10,0) 30%, rgba(12,12,10,0.85) 100%);
+}
+.svc-body { padding: 1.2rem 1.1rem 1.5rem; flex: 1; }
 .svc-tag {
-  font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase;
-  color: var(--gold); margin-bottom: 0.7rem; font-weight: 500;
-  display: block;
+  font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 0.5rem; font-weight: 500; display: block;
 }
 .svc-body h3 {
-  font-family: var(--font-display); font-size: 1.35rem; font-weight: 600;
-  color: var(--text); line-height: 1.25; margin-bottom: 0.8rem;
+  font-family: var(--font-display); font-size: 1.2rem; font-weight: 600;
+  color: var(--text); line-height: 1.25; margin-bottom: 0.6rem;
 }
-.svc-body p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.75; font-weight: 300; }
-.svc-bullets { margin-top: 1rem; list-style: none; }
+.svc-body p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.7; font-weight: 300; }
+.svc-bullets { margin-top: 0.8rem; list-style: none; }
 .svc-bullets li {
-  font-size: 0.8rem; color: var(--text-muted); padding: 0.2rem 0;
+  font-size: 0.78rem; color: var(--text-muted); padding: 0.18rem 0;
   display: flex; align-items: flex-start; gap: 0.5rem;
 }
 .svc-bullets li::before {
@@ -483,49 +483,41 @@ nav {
   background: var(--gold); flex-shrink: 0; margin-top: 0.55rem;
 }
 
-/* ── WHY US (light section) ── */
-.why-header { margin-bottom: 3.5rem; }
+/* ── WHY US (light) ── */
+.why-header { margin-bottom: 3rem; }
 .why-header h2 {
   font-family: var(--font-display);
   font-size: clamp(2rem, 4vw, 3.2rem);
   font-weight: 600; color: var(--light-text); line-height: 1.1;
 }
 .why-header h2 em { font-style: italic; color: var(--gold); }
-.why-header .section-label { color: var(--gold); }
 .why-header .section-label-wrap::before,
 .why-header .section-label-wrap::after { background: var(--gold); }
 
-.why-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-}
+.why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.2rem; }
 .why-card {
   background: var(--light-card);
-  border: 1px solid rgba(184,154,90,0.1);
-  padding: 2.2rem 2rem;
-  transition: box-shadow 0.2s, border-color 0.2s;
+  border: 1px solid rgba(184,154,90,0.12);
+  padding: 2rem 1.8rem;
+  transition: box-shadow 0.25s, border-color 0.25s, transform 0.25s;
+  border-radius: 2px;
 }
 .why-card:hover {
-  box-shadow: 0 8px 32px rgba(184,154,90,0.08);
-  border-color: rgba(184,154,90,0.3);
+  box-shadow: 0 8px 30px rgba(184,154,90,0.1);
+  border-color: rgba(184,154,90,0.35);
+  transform: translateY(-2px);
 }
 .why-icon {
   width: 44px; height: 44px;
-  background: rgba(184,154,90,0.1);
-  border-radius: 8px;
-  display: flex; align-items: center; justify-content: center;
-  margin-bottom: 1.2rem;
+  background: rgba(184,154,90,0.1); border-radius: 8px;
+  display: flex; align-items: center; justify-content: center; margin-bottom: 1.1rem;
 }
 .why-icon svg { width: 22px; height: 22px; }
-.why-card h3 {
-  font-size: 1.05rem; font-weight: 600; color: var(--light-text);
-  margin-bottom: 0.6rem; letter-spacing: -0.01em;
-}
-.why-card p { font-size: 0.88rem; color: var(--light-muted); line-height: 1.75; font-weight: 300; }
+.why-card h3 { font-size: 1.02rem; font-weight: 600; color: var(--light-text); margin-bottom: 0.5rem; }
+.why-card p { font-size: 0.86rem; color: var(--light-muted); line-height: 1.75; font-weight: 300; }
 
 /* ── INDUSTRIES ── */
-.ind-header { margin-bottom: 3rem; }
+.ind-header { margin-bottom: 2.8rem; }
 .ind-header h2 {
   font-family: var(--font-display);
   font-size: clamp(2rem, 4vw, 3rem);
@@ -536,146 +528,130 @@ nav {
 .ind-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1px; background: var(--border);
-  border: 0.5px solid var(--border);
+  gap: 10px;
 }
 .ind-card {
-  background: var(--dark-card);
-  padding: 2rem 1.5rem;
-  display: flex; flex-direction: column; align-items: center;
-  gap: 1rem; text-align: center;
-  transition: background 0.2s;
+  position: relative; overflow: hidden;
+  height: 130px; border-radius: 2px;
+  display: flex; align-items: flex-end;
+  cursor: default; transition: transform 0.3s;
 }
-.ind-card:hover { background: #1E1E1A; }
-.ind-icon {
-  width: 48px; height: 48px;
-  background: var(--gold-dim);
-  border-radius: 10px;
-  display: flex; align-items: center; justify-content: center;
+.ind-card:hover { transform: scale(1.02); }
+.ind-card img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; filter: brightness(0.45) saturate(0.6);
+  transition: filter 0.3s;
 }
-.ind-icon svg { width: 24px; height: 24px; }
-.ind-card span {
-  font-size: 0.85rem; color: var(--text-muted); font-weight: 400;
-  letter-spacing: 0.02em;
+.ind-card:hover img { filter: brightness(0.55) saturate(0.8); }
+.ind-card-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(12,12,10,0) 20%, rgba(12,12,10,0.75) 100%);
+}
+.ind-card-label {
+  position: relative; z-index: 1; padding: 0.8rem 1rem;
+  font-size: 0.82rem; font-weight: 500; color: #fff; letter-spacing: 0.04em;
 }
 
 /* ── ABOUT ── */
-.about-grid {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center;
-}
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
 .about-text h2 {
   font-family: var(--font-display);
   font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 600; line-height: 1.1; color: var(--text); margin-bottom: 1.5rem;
+  font-weight: 600; line-height: 1.1; color: var(--text); margin-bottom: 1.4rem;
 }
 .about-text h2 em { font-style: italic; color: var(--gold); }
-.about-text p {
-  color: var(--text-muted); line-height: 1.9; font-weight: 300;
-  font-size: 1rem; margin-bottom: 1.2rem;
-}
-.about-divider {
-  display: flex; flex-direction: column; gap: 1px;
-}
+.about-text p { color: var(--text-muted); line-height: 1.9; font-weight: 300; font-size: 0.98rem; margin-bottom: 1.1rem; }
+.about-divider { display: flex; flex-direction: column; }
 .about-item {
-  border-top: 0.5px solid var(--border);
-  padding: 1.4rem 0;
-  display: flex; gap: 1.5rem; align-items: flex-start;
+  border-top: 0.5px solid var(--border); padding: 1.3rem 0;
+  display: flex; gap: 1.4rem; align-items: flex-start;
 }
 .about-item:last-child { border-bottom: 0.5px solid var(--border); }
 .about-item-num {
-  font-family: var(--font-display); font-size: 1.8rem; font-weight: 600;
-  color: var(--gold); line-height: 1; flex-shrink: 0; min-width: 40px;
+  font-family: var(--font-display); font-size: 1.7rem; font-weight: 600;
+  color: var(--gold); line-height: 1; flex-shrink: 0; min-width: 38px;
 }
-.about-item-text strong {
-  display: block; font-size: 0.9rem; font-weight: 500; color: var(--text);
-  margin-bottom: 0.25rem; letter-spacing: 0.02em;
-}
-.about-item-text p { font-size: 0.85rem; color: var(--text-muted); margin: 0; }
+.about-item-text strong { display: block; font-size: 0.88rem; font-weight: 500; color: var(--text); margin-bottom: 0.2rem; }
+.about-item-text p { font-size: 0.82rem; color: var(--text-muted); margin: 0; }
 
 /* ── CONTACT ── */
-.contact-wrap {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start;
-}
+.contact-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
 .contact-left h2 {
   font-family: var(--font-display);
-  font-size: clamp(2.2rem, 4vw, 3.2rem);
-  font-weight: 600; line-height: 1.1; color: var(--text); margin-bottom: 1.2rem;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 600; line-height: 1.1; color: var(--text); margin-bottom: 1.1rem;
 }
 .contact-left h2 em { font-style: italic; color: var(--gold); }
-.contact-left p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.85; margin-bottom: 2rem; }
+.contact-left p { color: var(--text-muted); font-size: 0.93rem; line-height: 1.85; margin-bottom: 1.8rem; }
 .contact-email-link {
   display: inline-flex; align-items: center; gap: 0.7rem;
-  color: var(--gold); text-decoration: none;
-  font-size: 1rem; letter-spacing: 0.02em;
-  border-bottom: 0.5px solid var(--border);
-  padding-bottom: 0.3rem;
+  color: var(--gold); text-decoration: none; font-size: 0.95rem;
+  border-bottom: 0.5px solid var(--border); padding-bottom: 0.3rem;
   transition: border-color 0.2s;
 }
 .contact-email-link:hover { border-color: var(--gold); }
-
-.contact-form { display: flex; flex-direction: column; gap: 0.9rem; }
+.contact-form { display: flex; flex-direction: column; gap: 0.85rem; }
 .contact-form input,
 .contact-form textarea {
-  background: var(--dark-card);
-  border: 0.5px solid var(--border);
-  color: var(--text);
-  padding: 0.9rem 1.2rem;
+  background: var(--dark-card); border: 0.5px solid var(--border);
+  color: var(--text); padding: 0.85rem 1.1rem;
   font-family: var(--font-body); font-size: 0.88rem; font-weight: 300;
   outline: none; transition: border-color 0.2s; resize: none; width: 100%;
+  border-radius: 1px;
 }
-.contact-form input::placeholder,
-.contact-form textarea::placeholder { color: var(--text-muted); }
-.contact-form input:focus,
-.contact-form textarea:focus { border-color: var(--gold); }
+.contact-form input::placeholder, .contact-form textarea::placeholder { color: var(--text-muted); }
+.contact-form input:focus, .contact-form textarea:focus { border-color: var(--gold); }
 .form-success {
-  display: none;
-  background: var(--gold-dim);
-  border: 0.5px solid var(--gold);
-  padding: 1.2rem; color: var(--gold);
-  font-size: 0.88rem; text-align: center; letter-spacing: 0.04em;
+  display: none; background: var(--gold-dim); border: 0.5px solid var(--gold);
+  padding: 1.2rem; color: var(--gold); font-size: 0.88rem; text-align: center;
 }
 
 /* ── FOOTER ── */
-footer {
-  background: var(--dark); border-top: 0.5px solid var(--border);
-  padding: 3rem 4rem;
-}
+footer { background: var(--dark); border-top: 0.5px solid var(--border); padding: 2.5rem 3rem; }
 .footer-inner {
   max-width: 1200px; margin: 0 auto;
   display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem;
 }
 .footer-logo { display: flex; align-items: center; }
-.footer-logo svg { height: 32px; width: auto; }
-.footer-links { display: flex; gap: 2rem; flex-wrap: wrap; }
+.footer-logo svg { height: 30px; width: auto; }
+.footer-links { display: flex; gap: 1.8rem; flex-wrap: wrap; }
 .footer-links a {
-  font-size: 0.75rem; letter-spacing: 0.07em; text-transform: uppercase;
+  font-size: 0.72rem; letter-spacing: 0.07em; text-transform: uppercase;
   color: var(--text-muted); text-decoration: none; transition: color 0.2s;
 }
 .footer-links a:hover { color: var(--gold); }
 .footer-copy {
-  font-size: 0.75rem; color: var(--text-muted);
+  font-size: 0.72rem; color: var(--text-muted);
   width: 100%; text-align: center;
-  padding-top: 1.5rem; border-top: 0.5px solid var(--border); margin-top: 1rem;
+  padding-top: 1.5rem; border-top: 0.5px solid var(--border); margin-top: 0.5rem;
 }
-
-/* ── SEP ── */
-.sep { height: 0.5px; background: var(--border); width: 100%; }
 
 /* ── RESPONSIVE ── */
-@media (max-width: 900px) {
-  nav { padding: 0 1.5rem; }
-  .nav-links { display: none; }
-  .section-dark, .section-mid, .section-light { padding: 5rem 1.5rem; }
-  .services-scroll { grid-template-columns: 1fr 1fr; }
-  .ind-grid { grid-template-columns: 1fr 1fr; }
-  .about-grid { grid-template-columns: 1fr; gap: 3rem; }
-  .contact-wrap { grid-template-columns: 1fr; gap: 3rem; }
-  footer { padding: 2.5rem 1.5rem; }
+@media (max-width: 1024px) {
+  .services-grid { grid-template-columns: repeat(3, 1fr); }
 }
-@media (max-width: 540px) {
-  .services-scroll { grid-template-columns: 1fr; }
+@media (max-width: 768px) {
+  nav { padding: 0 1.2rem; }
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+  .section-dark, .section-mid, .section-light { padding: 4rem 1.2rem; }
+  .services-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .svc-img { height: 140px; }
+  .ind-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .ind-card { height: 110px; }
+  .why-grid { grid-template-columns: 1fr; gap: 1rem; }
+  .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .contact-wrap { grid-template-columns: 1fr; gap: 2.5rem; }
+  footer { padding: 2rem 1.2rem; }
+  .footer-inner { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .footer-links { gap: 1.2rem; }
+  .hero-actions { flex-direction: column; align-items: center; }
+  .btn-gold, .btn-ghost { width: 100%; max-width: 280px; text-align: center; }
+}
+@media (max-width: 480px) {
+  .services-grid { grid-template-columns: 1fr; }
   .ind-grid { grid-template-columns: 1fr 1fr; }
-  .why-grid { grid-template-columns: 1fr; }
+  .hero h1 { font-size: clamp(2.4rem, 11vw, 3.5rem); }
 }
 </style>
 </head>
@@ -700,14 +676,25 @@ footer {
     <li><a href="#contact">Contact</a></li>
   </ul>
   <a class="nav-cta" href="#contact">Get Started →</a>
+  <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#services" onclick="toggleMenu()">Services</a>
+  <a href="#about" onclick="toggleMenu()">About</a>
+  <a href="#why-us" onclick="toggleMenu()">Why Us</a>
+  <a href="#industries" onclick="toggleMenu()">Industries</a>
+  <a href="#contact" onclick="toggleMenu()">Get Started →</a>
+</div>
 
 <!-- HERO -->
 <div class="hero">
+  <div class="hero-bg"></div>
   <div class="hero-inner">
     <div class="hero-eyebrow">Strategic Business Advisory</div>
     <h1>Your Global<br /><em>Business Edge.</em></h1>
-    <p class="hero-sub">Strategic advisory for global capital movement, cross-border payments, and international banking solutions — tailored for ambitious businesses.</p>
+    <p class="hero-sub">Boutique advisory for cross-border payments, international banking, and payment infrastructure — connecting ambitious businesses to financial solutions in 30+ countries.</p>
     <div class="hero-actions">
       <a class="btn-gold" href="#services">Our Services</a>
       <a class="btn-ghost" href="#contact">Contact Us</a>
@@ -720,47 +707,37 @@ footer {
 <div class="section-mid" id="services">
   <div class="section-inner">
     <div class="services-header">
-      <div class="section-label-wrap">
-        <span class="section-label">Our Services</span>
-      </div>
-      <h2 class="" style="font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(2.2rem,4.5vw,3.5rem);font-weight:600;line-height:1.1;color:var(--text);">Solutions Built for<br /><em style="font-style:italic;color:var(--gold);">Global Scale</em></h2>
+      <div class="section-label-wrap"><span class="section-label">Our Services</span></div>
+      <h2>Solutions Built for<br /><em>Global Scale</em></h2>
     </div>
-    <div class="services-scroll">
+    <div class="services-grid">
 
       <div class="svc-card">
-        <div class="svc-img svc-img-1">
-          <span class="svc-num">01</span>
-          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="6" y="14" width="36" height="24" rx="3" stroke="#B89A5A" stroke-width="1.5"/>
-            <path d="M6 20h36" stroke="#B89A5A" stroke-width="1.5"/>
-            <path d="M14 30h6M24 30h10" stroke="#B89A5A" stroke-width="1.5" stroke-linecap="round"/>
-          </svg>
+        <div class="svc-img">
+          <img src="https://images.unsplash.com/photo-1541354329998-f4d9a9f9297f?w=600&q=75&auto=format&fit=crop" alt="Banking Solutions" loading="lazy" />
+          <div class="svc-img-overlay"></div>
         </div>
         <div class="svc-body">
           <span class="svc-tag">B2B, C2B &amp; B2C Banking</span>
           <h3>Banking Solutions</h3>
-          <p>B2B, C2B, and B2C banking solutions including brick-and-mortar banks and white-label services across global markets.</p>
+          <p>Brick-and-mortar and white-label banking across global markets.</p>
           <ul class="svc-bullets">
-            <li>Brick-and-Mortar Banks</li>
-            <li>White-Label Services</li>
-            <li>B2B &amp; B2C Banking</li>
+            <li>B2B &amp; B2C Accounts</li>
+            <li>White-Label Banking</li>
+            <li>Global Markets</li>
           </ul>
         </div>
       </div>
 
       <div class="svc-card">
-        <div class="svc-img svc-img-2">
-          <span class="svc-num">02</span>
-          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="24" cy="24" r="16" stroke="#B89A5A" stroke-width="1.5"/>
-            <path d="M24 16v8l5 5" stroke="#B89A5A" stroke-width="1.5" stroke-linecap="round"/>
-            <path d="M10 24h4M34 24h4M24 10v4M24 34v4" stroke="#B89A5A" stroke-width="1.5" stroke-linecap="round"/>
-          </svg>
+        <div class="svc-img">
+          <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&q=75&auto=format&fit=crop" alt="Payment Processing" loading="lazy" />
+          <div class="svc-img-overlay"></div>
         </div>
         <div class="svc-body">
           <span class="svc-tag">Multi-Region Card Processing</span>
           <h3>Payment Processing</h3>
-          <p>Credit and debit card processing across EU, LATAM, Africa, SEA, EMEA, and the US — tailored for your business model.</p>
+          <p>Credit and debit card processing across EU, LATAM, Africa, SEA, EMEA, and the US.</p>
           <ul class="svc-bullets">
             <li>Credit &amp; Debit Cards</li>
             <li>EU, LATAM, Africa, SEA</li>
@@ -770,39 +747,31 @@ footer {
       </div>
 
       <div class="svc-card">
-        <div class="svc-img svc-img-3">
-          <span class="svc-num">03</span>
-          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="10" y="16" width="28" height="20" rx="2" stroke="#B89A5A" stroke-width="1.5"/>
-            <path d="M16 16v-4a8 8 0 0 1 16 0v4" stroke="#B89A5A" stroke-width="1.5" stroke-linecap="round"/>
-            <circle cx="24" cy="26" r="3" stroke="#B89A5A" stroke-width="1.5"/>
-          </svg>
+        <div class="svc-img">
+          <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&q=75&auto=format&fit=crop" alt="Alternative Payment Methods" loading="lazy" />
+          <div class="svc-img-overlay"></div>
         </div>
         <div class="svc-body">
           <span class="svc-tag">Open Banking &amp; Digital Wallets</span>
           <h3>APM – Alternative Payment Methods</h3>
-          <p>Open banking, mobile payments, e-wallets, and instant bank transfers. APM solutions for every market and customer segment.</p>
+          <p>Open banking, mobile payments, e-wallets, and instant bank transfers.</p>
           <ul class="svc-bullets">
             <li>Open Banking</li>
-            <li>E-Wallets &amp; Mobile Pay</li>
+            <li>E-Wallets &amp; Mobile</li>
             <li>Instant Transfers</li>
           </ul>
         </div>
       </div>
 
       <div class="svc-card">
-        <div class="svc-img svc-img-4">
-          <span class="svc-num">04</span>
-          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="24" cy="24" r="16" stroke="#B89A5A" stroke-width="1.5"/>
-            <path d="M8 24h32" stroke="#B89A5A" stroke-width="1.5"/>
-            <path d="M24 8a22 22 0 0 1 0 32M24 8a22 22 0 0 0 0 32" stroke="#B89A5A" stroke-width="1.5"/>
-          </svg>
+        <div class="svc-img">
+          <img src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=600&q=75&auto=format&fit=crop" alt="Cross-Border Payments" loading="lazy" />
+          <div class="svc-img-overlay"></div>
         </div>
         <div class="svc-body">
           <span class="svc-tag">International Fund Transfers</span>
           <h3>Cross-Border Payments</h3>
-          <p>Seamless international payment solutions that enable you to send and receive funds across borders efficiently and compliantly.</p>
+          <p>Seamless international payments across borders, efficiently and compliantly.</p>
           <ul class="svc-bullets">
             <li>Cross-Border Transfers</li>
             <li>Multi-Currency</li>
@@ -812,21 +781,17 @@ footer {
       </div>
 
       <div class="svc-card">
-        <div class="svc-img svc-img-5">
-          <span class="svc-num">05</span>
-          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M24 8L8 16l16 8 16-8-16-8z" stroke="#B89A5A" stroke-width="1.5" stroke-linejoin="round"/>
-            <path d="M8 32l16 8 16-8" stroke="#B89A5A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M8 24l16 8 16-8" stroke="#B89A5A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+        <div class="svc-img">
+          <img src="https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=600&q=75&auto=format&fit=crop" alt="Crypto Solutions" loading="lazy" />
+          <div class="svc-img-overlay"></div>
         </div>
         <div class="svc-body">
           <span class="svc-tag">Crypto Integration &amp; Advisory</span>
           <h3>Crypto Solutions</h3>
-          <p>Buy, sell, and transfer cryptocurrencies through your business account. Full crypto integration advisory and infrastructure.</p>
+          <p>Buy, sell, and transfer crypto through your business account with full infrastructure advisory.</p>
           <ul class="svc-bullets">
-            <li>Buy, Sell &amp; Transfer Crypto</li>
-            <li>Business Account Integration</li>
+            <li>Business Crypto Accounts</li>
+            <li>Buy, Sell &amp; Transfer</li>
             <li>Crypto Advisory</li>
           </ul>
         </div>
@@ -840,47 +805,37 @@ footer {
 <div class="section-light" id="why-us">
   <div class="section-inner">
     <div class="why-header">
-      <div class="section-label-wrap">
-        <span class="section-label" style="color:var(--gold);">Why Choose Us</span>
-      </div>
-      <h2 style="font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:600;color:#1A1A17;line-height:1.1;">The Gal Advisors <em style="font-style:italic;color:var(--gold);">Advantage</em></h2>
+      <div class="section-label-wrap"><span class="section-label" style="color:var(--gold);">Why Choose Us</span></div>
+      <h2>The Gal Advisors <em>Advantage</em></h2>
     </div>
     <div class="why-grid">
       <div class="why-card">
         <div class="why-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#B89A5A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="9"/><path d="M2 12h20"/><path d="M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/>
-          </svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#B89A5A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M2 12h20"/><path d="M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
         </div>
         <h3>Global Network</h3>
-        <p>Direct relationships with financial institutions across 30+ countries and multiple regulatory jurisdictions — opening doors others can't.</p>
+        <p>Direct relationships with financial institutions across 30+ countries and multiple regulatory jurisdictions.</p>
       </div>
       <div class="why-card">
         <div class="why-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#B89A5A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/>
-          </svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#B89A5A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
         </div>
         <h3>Rapid Execution</h3>
         <p>Streamlined processes that reduce onboarding timelines from months to weeks for banking and payment solutions.</p>
       </div>
       <div class="why-card">
         <div class="why-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#B89A5A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-          </svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#B89A5A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
         </div>
         <h3>Dedicated Advisory</h3>
-        <p>A personal advisor assigned to your account, providing bespoke guidance tailored to your unique business needs and goals.</p>
+        <p>A personal advisor assigned to your account, providing bespoke guidance tailored to your business needs.</p>
       </div>
       <div class="why-card">
         <div class="why-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#B89A5A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/>
-          </svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#B89A5A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/></svg>
         </div>
         <h3>End-to-End Support</h3>
-        <p>From initial consultation through account opening and ongoing operational optimization — we're with you at every step of the journey.</p>
+        <p>From initial consultation through account opening and ongoing operational optimisation — we're with you every step.</p>
       </div>
     </div>
   </div>
@@ -890,75 +845,49 @@ footer {
 <div class="section-dark" id="industries">
   <div class="section-inner">
     <div class="ind-header">
-      <div class="section-label-wrap">
-        <span class="section-label">Industries We Serve</span>
-      </div>
-      <h2 style="font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(2rem,4vw,3rem);font-weight:600;color:var(--text);line-height:1.1;">Built for Every <em style="font-style:italic;color:var(--gold);">Vertical</em></h2>
+      <div class="section-label-wrap"><span class="section-label">Industries We Serve</span></div>
+      <h2>Built for Every <em>Vertical</em></h2>
     </div>
     <div class="ind-grid">
       <div class="ind-card">
-        <div class="ind-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#B89A5A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" width="24" height="24">
-            <rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/>
-          </svg>
-        </div>
-        <span>Fintech</span>
+        <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=500&q=70&auto=format&fit=crop" alt="Fintech" loading="lazy" />
+        <div class="ind-card-overlay"></div>
+        <span class="ind-card-label">Fintech</span>
       </div>
       <div class="ind-card">
-        <div class="ind-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#B89A5A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" width="24" height="24">
-            <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
-          </svg>
-        </div>
-        <span>E-Commerce</span>
+        <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=500&q=70&auto=format&fit=crop" alt="E-Commerce" loading="lazy" />
+        <div class="ind-card-overlay"></div>
+        <span class="ind-card-label">E-Commerce</span>
       </div>
       <div class="ind-card">
-        <div class="ind-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#B89A5A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" width="24" height="24">
-            <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
-          </svg>
-        </div>
-        <span>Crypto &amp; Web3</span>
+        <img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=500&q=70&auto=format&fit=crop" alt="Crypto and Web3" loading="lazy" />
+        <div class="ind-card-overlay"></div>
+        <span class="ind-card-label">Crypto &amp; Web3</span>
       </div>
       <div class="ind-card">
-        <div class="ind-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#B89A5A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" width="24" height="24">
-            <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/>
-          </svg>
-        </div>
-        <span>iGaming</span>
+        <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=500&q=70&auto=format&fit=crop" alt="iGaming" loading="lazy" />
+        <div class="ind-card-overlay"></div>
+        <span class="ind-card-label">iGaming</span>
       </div>
       <div class="ind-card">
-        <div class="ind-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#B89A5A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" width="24" height="24">
-            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16z"/>
-          </svg>
-        </div>
-        <span>Travel &amp; Hospitality</span>
+        <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=500&q=70&auto=format&fit=crop" alt="Travel and Hospitality" loading="lazy" />
+        <div class="ind-card-overlay"></div>
+        <span class="ind-card-label">Travel &amp; Hospitality</span>
       </div>
       <div class="ind-card">
-        <div class="ind-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#B89A5A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" width="24" height="24">
-            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-          </svg>
-        </div>
-        <span>Health &amp; Wellness</span>
+        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=500&q=70&auto=format&fit=crop" alt="Health and Wellness" loading="lazy" />
+        <div class="ind-card-overlay"></div>
+        <span class="ind-card-label">Health &amp; Wellness</span>
       </div>
       <div class="ind-card">
-        <div class="ind-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#B89A5A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" width="24" height="24">
-            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
-          </svg>
-        </div>
-        <span>Real Estate</span>
+        <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=500&q=70&auto=format&fit=crop" alt="Real Estate" loading="lazy" />
+        <div class="ind-card-overlay"></div>
+        <span class="ind-card-label">Real Estate</span>
       </div>
       <div class="ind-card">
-        <div class="ind-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#B89A5A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" width="24" height="24">
-            <circle cx="12" cy="12" r="9"/><path d="M2 12h20"/><path d="M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/>
-          </svg>
-        </div>
-        <span>Global Marketplace</span>
+        <img src="https://images.unsplash.com/photo-1493421419110-74f4e85ba126?w=500&q=70&auto=format&fit=crop" alt="Global Marketplace" loading="lazy" />
+        <div class="ind-card-overlay"></div>
+        <span class="ind-card-label">Global Marketplace</span>
       </div>
     </div>
   </div>
@@ -969,11 +898,9 @@ footer {
   <div class="section-inner">
     <div class="about-grid">
       <div class="about-text">
-        <div class="section-label-wrap">
-          <span class="section-label">About Gal Advisors</span>
-        </div>
+        <div class="section-label-wrap"><span class="section-label">About Gal Advisors</span></div>
         <h2>Boutique expertise.<br /><em>Global reach.</em></h2>
-        <p>Gal Advisors is a boutique consulting firm dedicated to taking your business to the next level. Our years of expertise in B2B and B2C fields enable us to bring you the most relevant, up-to-date solutions — from banking and payment processing to corporate formations and operational strategy.</p>
+        <p>Gal Advisors is a boutique consulting firm dedicated to taking your business to the next level. Our years of expertise in B2B and B2C fields enable us to bring you the most relevant, up-to-date solutions — from banking and payment processing to operational strategy.</p>
         <p>We work across a broad range of industries and geographies, providing access to financial infrastructure and regulatory frameworks that were once available only to the largest enterprises.</p>
       </div>
       <div class="about-divider">
@@ -1008,21 +935,17 @@ footer {
   <div class="section-inner">
     <div class="contact-wrap">
       <div class="contact-left">
-        <div class="section-label-wrap">
-          <span class="section-label">Get In Touch</span>
-        </div>
+        <div class="section-label-wrap"><span class="section-label">Get In Touch</span></div>
         <h2>Initiate Your<br /><em>Global Strategy</em></h2>
-        <p>Reach out to discuss your requirements. Our team will respond within one business day with tailored advice for your situation.</p>
+        <p>Reach out to discuss your requirements. Our team responds within one business day with tailored advice for your situation.</p>
         <a class="contact-email-link" href="mailto:mor@gal-advisors.com">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#B89A5A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
-            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
-          </svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#B89A5A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
           mor@gal-advisors.com
         </a>
       </div>
       <div>
-      <div class="form-success" id="formSuccess">✓ Thank you! We'll be in touch within one business day.</div>
-        <form id="contactForm" class="contact-form" action="https://formspree.io/f/xojbakro" method="POST" onsubmit="handleSubmit(event)">
+        <div class="form-success" id="formSuccess">✓ Thank you! We'll be in touch within one business day.</div>
+        <form id="contactForm" class="contact-form" action="https://formspree.io/f/xzzbeqov" method="POST" onsubmit="handleSubmit(event)">
           <input type="text" name="name" placeholder="Full Name" required />
           <input type="email" name="email" placeholder="Email Address" required />
           <input type="text" name="company" placeholder="Company Name" />
@@ -1036,25 +959,10 @@ footer {
   </div>
 </div>
 
-<!-- AI-READABLE ENTITY SUMMARY (visible to crawlers, screen readers, semantic search) -->
+<!-- AI-READABLE ENTITY SUMMARY -->
 <section aria-label="About Gal Advisors" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;" aria-hidden="false">
   <h2>Gal Advisors — Cross-Border Payments and International Banking Advisory</h2>
-  <p>Gal Advisors is a boutique financial consulting firm. The company specialises in cross-border payments, international banking solutions, payment processing, alternative payment methods (APM), and cryptocurrency integration advisory. Gal Advisors serves clients in Fintech, iGaming, E-Commerce, Crypto and Web3, Travel and Hospitality, Health and Wellness, and Real Estate industries. The firm has direct relationships with financial institutions in more than 30 countries. Gal Advisors is known for reducing banking and payment onboarding from months to weeks. Clients receive a dedicated advisor for personalised, end-to-end support. To contact Gal Advisors, email mor@gal-advisors.com or visit www.gal-advisors.com.</p>
-  <h3>Services offered by Gal Advisors</h3>
-  <ul>
-    <li>Banking Solutions: B2B, C2B, and B2C banking including brick-and-mortar and white-label banking globally.</li>
-    <li>Payment Processing: Credit and debit card processing across EU, LATAM, Africa, SEA, EMEA, and the US.</li>
-    <li>APM - Alternative Payment Methods: Open banking, e-wallets, mobile payments, and instant bank transfers.</li>
-    <li>Cross-Border Payments: International fund transfers with multi-currency support and compliance guidance.</li>
-    <li>Crypto Solutions: Business crypto account setup, buy, sell and transfer infrastructure, crypto integration advisory.</li>
-  </ul>
-  <h3>Why choose Gal Advisors</h3>
-  <ul>
-    <li>Global Network: Direct access to financial institutions across 30+ countries and multiple regulatory jurisdictions.</li>
-    <li>Rapid Execution: Onboarding timelines reduced from months to weeks.</li>
-    <li>Dedicated Advisory: Personal advisor assigned to each client account.</li>
-    <li>End-to-End Support: From first consultation through ongoing operational optimisation.</li>
-  </ul>
+  <p>Gal Advisors is a boutique financial consulting firm specialising in cross-border payments, international banking, payment processing, APM, and crypto advisory, serving 30+ countries across Fintech, iGaming, E-Commerce, Crypto, Travel, Health, and Real Estate sectors. Contact: mor@gal-advisors.com</p>
 </section>
 
 <!-- FOOTER -->
@@ -1082,29 +990,19 @@ footer {
 </footer>
 
 <script>
+function toggleMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
 async function handleSubmit(e) {
   e.preventDefault();
   const form = e.target;
   const btn = form.querySelector('button[type="submit"]');
-  btn.textContent = 'Sending…';
-  btn.disabled = true;
+  btn.textContent = 'Sending…'; btn.disabled = true;
   try {
-    const res = await fetch(form.action, {
-      method: 'POST',
-      body: new FormData(form),
-      headers: { 'Accept': 'application/json' }
-    });
-    if (res.ok) {
-      form.style.display = 'none';
-      document.getElementById('formSuccess').style.display = 'block';
-    } else {
-      btn.textContent = 'Error – try emailing us directly';
-      btn.disabled = false;
-    }
-  } catch {
-    btn.textContent = 'Error – try emailing us directly';
-    btn.disabled = false;
-  }
+    const res = await fetch(form.action, { method:'POST', body:new FormData(form), headers:{'Accept':'application/json'} });
+    if (res.ok) { form.style.display='none'; document.getElementById('formSuccess').style.display='block'; }
+    else { btn.textContent='Error – please email us directly'; btn.disabled=false; }
+  } catch { btn.textContent='Error – please email us directly'; btn.disabled=false; }
 }
 </script>
 </body>
