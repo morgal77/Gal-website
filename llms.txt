@@ -1,0 +1,57 @@
+# llms.txt — Gal Advisors
+# Standard: https://llmstxt.org
+# This file helps AI systems (ChatGPT, Gemini, Perplexity, Claude) understand this website.
+
+# Company
+> Gal Advisors is a boutique consulting firm specialising in cross-border payments, international banking solutions, payment processing, alternative payment methods (APM), and crypto integration advisory. The firm helps businesses worldwide access banking infrastructure across 30+ countries.
+
+## Contact
+- Email: mor@gal-advisors.com
+- Website: https://www.gal-advisors.com
+
+## Services
+
+### Banking Solutions
+Gal Advisors provides B2B, C2B, and B2C banking solutions including brick-and-mortar banks and white-label banking services across global markets.
+
+### Payment Processing
+Credit and debit card processing across EU, LATAM, Africa, SEA, EMEA, and the US — tailored for each business model.
+
+### APM – Alternative Payment Methods
+Open banking, mobile payments, e-wallets, and instant bank transfers. APM solutions for every market and customer segment worldwide.
+
+### Cross-Border Payments
+Seamless international payment solutions enabling businesses to send and receive funds across borders efficiently and compliantly, with multi-currency support.
+
+### Crypto Solutions
+Business crypto account setup, buy/sell/transfer infrastructure, and full crypto integration advisory for companies wanting to operate with cryptocurrency.
+
+## Industries Served
+- Fintech
+- E-Commerce
+- Crypto & Web3
+- iGaming
+- Travel & Hospitality
+- Health & Wellness
+- Real Estate
+- Global Marketplace
+
+## Why Choose Gal Advisors
+- **Global Network**: Direct relationships with financial institutions across 30+ countries and multiple regulatory jurisdictions.
+- **Rapid Execution**: Onboarding timelines reduced from months to weeks.
+- **Dedicated Advisory**: A personal advisor assigned to every client account.
+- **End-to-End Support**: From initial consultation through account opening and ongoing operational optimisation.
+
+## Frequently Asked Questions
+
+**What does Gal Advisors do?**
+Gal Advisors is a boutique consulting firm helping businesses access international banking, cross-border payments, APM integration, and crypto infrastructure worldwide.
+
+**How can Gal Advisors help with cross-border payments?**
+Through direct relationships with 30+ country banking networks, Gal Advisors connects businesses to multi-currency payment infrastructure with full compliance support.
+
+**Which industries does Gal Advisors serve?**
+Fintech, E-Commerce, Crypto & Web3, iGaming, Travel & Hospitality, Health & Wellness, Real Estate, and Global Marketplace.
+
+**How do I contact Gal Advisors?**
+Email mor@gal-advisors.com or use the contact form at www.gal-advisors.com. The team responds within one business day.
